@@ -24,7 +24,7 @@ for i in range (0,8):
     plt.figure(i,figsize=(12,4))   
     plt.plot(t,100*drift_u_a[i,:],'b')
     plt.xlabel('Tempo (s)'); plt.ylabel('Deslocamento relativo entre pavimentos (cm)')
-    plt.xlim(0,max(t)); plt.ylim(-0.20,0,20)
+    plt.xlim(0,max(t)); plt.ylim(-0.2,0.2)
     plt.title(f'Deslocamento relativo entre o {i}º e o {i+1}º pavimentos na direção 0 DEG')
     plt.grid(True)
     plt.show()
