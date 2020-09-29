@@ -40,13 +40,13 @@ def Matrix3D(Name,Nn):
     A = list(File['Area(m2)'])
     Iz =list(File['Inércia z (m4)'])
     Iy =list(File['Inércia y (m4)'])
+    J = list(File['Torcao (m4)'])
     RHO = list(File['Densidade'])
     
     ### PROPERTIES OF THE MATERIAL USING SI UNITS ###
 
     E = 28*10**9 
     G = E / 2.4
-    J = Iy + Iz
 
     ###  BUILDING THE MATRIX ID IN TERMS OF DEGREES OF FREEDOM ###
     ###  Each node has six degrees of freedom                  ###
@@ -148,17 +148,17 @@ def Matrix3D(Name,Nn):
     
     ### LOCAL MASS MATRIX OF THE ELEMENT ###
     
-        Jx = J[i]/A[i]
+        rx = J[i]/A[i]
         Me = ((RHO[i]*A[i]*L)/420)*np.array([[140,    0,    0,      0,      0,      0,  70,    0,    0,      0,      0,      0],
                                              [  0,   156,   0,      0,      0,   22*L,   0,   54,    0,      0,      0,  -13*L],
                                              [  0,    0,  156,      0,  -22*L,      0,   0,    0,   54,      0,   13*L,      0],
-                                             [  0,    0,    0, 140*Jx,      0,      0,   0,    0,    0,  70*Jx,      0,      0],
+                                             [  0,    0,    0, 140*rx,      0,      0,   0,    0,    0,  70*rx,      0,      0],
                                              [  0,    0,-22*L,      0, 4*L**2,      0,   0,    0,-13*L,      0,-3*L**2,      0],
                                              [  0, 22*L,    0,      0,      0, 4*L**2,   0, 13*L,    0,      0,      0,-3*L**2],
                                              [ 70,    0,    0,      0,      0,      0, 140,    0,    0,      0,      0,      0],
                                              [  0,   54,    0,      0,      0,   13*L,   0,  156,    0,      0,      0,  -22*L],
                                              [  0,    0,   54,      0,  -13*L,      0,   0,    0,  156,      0,   22*L,      0],
-                                             [  0,    0,    0,  70*Jx,      0,      0,   0,    0,    0, 140*Jx,      0,      0],
+                                             [  0,    0,    0,  70*rx,      0,      0,   0,    0,    0, 140*rx,      0,      0],
                                              [  0,    0, 13*L,      0,-3*L**2,      0,   0,    0, 22*L,      0, 4*L**2,      0],
                                              [  0,-13*L,    0,      0,      0,-3*L**2,   0,-22*L,    0,      0,      0, 4*L**2]])
    
